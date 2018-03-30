@@ -2,7 +2,7 @@
 Simple class wrapper featuring deep field invoking.
 
 **Wrapp** is based on Java 8 `MethodHandles` for maximum performance. 
-It allows you to wrap a whole class with (and it's superclasses) 
+It allows you to wrap a whole class (and it's superclasses) 
 to one simple `Wrapper<T>` class which is `Serializable`.
 
 That allows you to create `Serializable` versions of classes, serialize them
