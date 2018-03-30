@@ -19,7 +19,9 @@ public class WrapperFactory {
         return reflector;
     }
 
-    public <T> Wrapper<T> write(Class<? extends T> clazz, T instance) {
+    @SuppressWarnings("unchecked")
+    public <T> Wrapper<T> write(T instance) {
+        Class<? extends T> clazz = (Class<? extends T>) instance.getClass();
         Wrapper<T> wrapper = new Wrapper<>(clazz);
         Map<Field, Object> declaredFields = reflector.getFields(clazz, instance);
 

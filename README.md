@@ -17,7 +17,7 @@ wrapperFactory.register(TestClass.class);
 // Create an instance (TestClass is NOT serializable)
 TestClass testClass = new TestClass("Something");
 // Write it! (Wrapper<T> IS serializable)
-Wrapper<TestClass> wrapper = wrapperFactory.write(TestClass.class, testClass);
+Wrapper<TestClass> wrapper = wrapperFactory.write(testClass);
 // Then you can read it from existing wrapper
 TestClass otherInstance = new TestClass("Nothing");
 wrapper.read(wrapper, otherInstance);

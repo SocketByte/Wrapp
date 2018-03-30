@@ -34,7 +34,7 @@ public class WrapperFactoryTest {
         wrapperFactory.register(TestClass2.class);
 
         TestClass testClass = new TestClass();
-        Wrapper<TestClass> wrapper = wrapperFactory.write(TestClass.class, testClass);
+        Wrapper<TestClass> wrapper = wrapperFactory.write(testClass);
 
         assertNotNull(wrapper);
         assertEquals(wrapper.getOriginalClass(), TestClass.class);

@@ -34,7 +34,7 @@ public class FieldInfo implements Serializable {
             return;
         }
         if (!FieldDetector.isStandard(field.getType(), type))
-            type = wrapperFactory.write(type.getClass(), type);
+            type = wrapperFactory.write(type);
         this.serializable = true;
     }
 
