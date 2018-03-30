@@ -1,4 +1,4 @@
-# Wrapp ![version](https://img.shields.io/badge/version-1.0-blue.svg) [![Build Status](https://travis-ci.org/SocketByte/OpenSectors.svg?branch=master)](https://travis-ci.org/SocketByte/Wrapp)
+# Wrapp ![version](https://img.shields.io/badge/version-1.0-blue.svg) [![Build Status](https://travis-ci.org/SocketByte/Wrapp.svg?branch=master)](https://travis-ci.org/SocketByte/Wrapp)
 Simple class wrapper featuring deep field invoking.
 
 **Wrapp** is based on Java 8 `MethodHandles` for maximum performance. 
