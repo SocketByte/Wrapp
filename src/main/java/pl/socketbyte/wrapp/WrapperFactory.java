@@ -29,7 +29,7 @@ public class WrapperFactory {
             Field field = entry.getKey();
             Object value = entry.getValue();
 
-            FieldInfo info = new FieldInfo(this, field, clazz, value);
+            FieldInfo info = new FieldInfo(this, field, field.getDeclaringClass(), value);
             if (!info.isSerializable())
                 continue;
 

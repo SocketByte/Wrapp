@@ -1,9 +1,7 @@
 package pl.socketbyte.wrapp;
 
 import org.junit.Test;
-import pl.socketbyte.wrapp.tool.TestClass;
-import pl.socketbyte.wrapp.tool.TestClass1;
-import pl.socketbyte.wrapp.tool.TestClass2;
+import pl.socketbyte.wrapp.tool.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -12,6 +10,37 @@ import java.util.Map;
 import static org.junit.Assert.*;
 
 public class WrapperFactoryTest {
+
+    @Test
+    public void superClassTest() {
+        WrapperFactory wrapperFactory = new WrapperFactory();
+        wrapperFactory.register(TestClass3.class);
+        wrapperFactory.register(AbstractTestClass.class);
+
+        TestClass3 testClass3 = new TestClass3();
+        assertEquals(testClass3.getOtherNumber(), 100);
+        assertEquals(testClass3.getAbstractNumber(), 65);
+        Wrapper<TestClass3> wrapper = wrapperFactory.write(testClass3);
+
+        assertEquals(wrapper.getOriginalClass(), TestClass3.class);
+        assertTrue(wrapper.getFields().containsKey("otherNumber"));
+        assertTrue(wrapper.getFields().containsKey("abstractNumber"));
+
+        FieldInfo abstractNumberInfo = wrapper.getFields().get("abstractNumber");
+        assertEquals(abstractNumberInfo.getModifiers(), Modifier.PRIVATE);
+        assertEquals(abstractNumberInfo.getType(), 65);
+        assertEquals(abstractNumberInfo.getOriginalClass(), AbstractTestClass.class);
+        assertEquals(abstractNumberInfo.getName(), "abstractNumber");
+
+        TestClass3 different = new TestClass3(true);
+        assertEquals(different.getOtherNumber(), 200);
+        assertEquals(different.getAbstractNumber(), 850);
+
+        wrapperFactory.read(wrapper, different);
+
+        assertEquals(different.getOtherNumber(), 100);
+        assertEquals(different.getAbstractNumber(), 65);
+    }
 
     @Test
     public void registerTest() {
