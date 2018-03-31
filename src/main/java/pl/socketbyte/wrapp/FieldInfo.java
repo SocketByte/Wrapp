@@ -8,13 +8,13 @@ public class FieldInfo implements Serializable {
 
     private final transient Field field;
     private final transient WrapperFactory wrapperFactory;
-    private final Class<?> clazz;
-    private final String name;
-    private final boolean accessible;
-    private Object type;
-    private final int modifiers;
+    private final transient String name;
+    private final transient boolean accessible;
+    private final transient int modifiers;
+    private transient boolean serializable;
 
-    private boolean serializable;
+    private final Class<?> clazz;
+    private Object type;
 
     public FieldInfo(WrapperFactory wrapperFactory, Field field, Class<?> clazz, Object type) {
         this.wrapperFactory = wrapperFactory;
