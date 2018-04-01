@@ -20,7 +20,7 @@ TestClass testClass = new TestClass("Something");
 Wrapper<TestClass> wrapper = wrapperFactory.write(testClass);
 // Then you can read it from existing wrapper
 TestClass otherInstance = new TestClass("Nothing");
-wrapper.read(wrapper, otherInstance);
+wrapperFactory.read(wrapper, otherInstance);
 
 System.out.println(otherInstance.getTestString());
 // Output: Something
