@@ -21,7 +21,7 @@ public class FieldInfo implements Serializable {
         this.wrapperFactory = wrapperFactory;
         this.field = field;
         this.type = type;
-        this.typeClass = field.getClass();
+        this.typeClass = field.getType();
         this.name = field.getName();
         this.clazz = clazz;
         this.modifiers = field.getModifiers();
