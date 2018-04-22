@@ -65,7 +65,7 @@ public class FieldReflector {
             MethodHandle unreflected = lookup.unreflectGetter(field);
             return (T) unreflected.invoke(instance);
         } catch (Throwable e) {
-            throw new InternalError("Error occured during unreflecting a field", e);
+            throw new InternalError("Error occured during invoking a field", e);
         }
     }
 

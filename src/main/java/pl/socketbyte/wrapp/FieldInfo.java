@@ -14,12 +14,14 @@ public class FieldInfo implements Serializable {
     private transient boolean serializable;
 
     private final Class<?> clazz;
+    private Class<?> typeClass;
     private Object type;
 
     public FieldInfo(WrapperFactory wrapperFactory, Field field, Class<?> clazz, Object type) {
         this.wrapperFactory = wrapperFactory;
         this.field = field;
         this.type = type;
+        this.typeClass = field.getClass();
         this.name = field.getName();
         this.clazz = clazz;
         this.modifiers = field.getModifiers();
@@ -36,6 +38,10 @@ public class FieldInfo implements Serializable {
         if (!FieldDetector.isStandard(field.getType(), type))
             type = wrapperFactory.write(type);
         this.serializable = true;
+    }
+
+    public Class<?> getTypeClass() {
+        return typeClass;
     }
 
     public Class<?> getOriginalClass() {
