@@ -6,7 +6,6 @@ import java.lang.reflect.Modifier;
 
 public class FieldInfo implements Serializable {
 
-    private final transient Field field;
     private final transient WrapperFactory wrapperFactory;
     private final transient String name;
     private final transient boolean accessible;
@@ -19,7 +18,6 @@ public class FieldInfo implements Serializable {
 
     public FieldInfo(WrapperFactory wrapperFactory, Field field, Class<?> clazz, Object type) {
         this.wrapperFactory = wrapperFactory;
-        this.field = field;
         this.type = type;
         this.typeClass = field.getType();
         this.name = field.getName();
@@ -35,7 +33,7 @@ public class FieldInfo implements Serializable {
                 || Modifier.isNative(modifiers)) {
             return;
         }
-        if (!FieldDetector.isStandard(field.getType(), type))
+        if (!FieldDetector.isStandard(typeClass, type))
             type = wrapperFactory.write(type);
         this.serializable = true;
     }
@@ -58,6 +56,14 @@ public class FieldInfo implements Serializable {
 
     public Object getType() {
         return type;
+    }
+
+    public void setType(Object type) {
+        this.type = type;
+        // if it's null, we can assume that the type hasn't changed at all
+        if (type != null)
+            this.typeClass = type.getClass();
+        determine();
     }
 
     public int getModifiers() {
